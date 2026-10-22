@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="hr" data-lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marins Design | Naval Architects</title>
+<meta name="description" content="Marins Design – projektiranje brodova, brodica i jahti. Naval architecture for ships, boats and yachts.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -12 81 81'%3E%3Cg fill='%232B3990'%3E%3Cpath d='M14.04,27.91 L0.2,40.97 L0.01,11 L12.98,26.5Z'/%3E%3Cpath d='M53.71,0 L72.7,0 L40.29,35.82 L40.3,15.02Z'/%3E%3Cpath d='M18.99,0 L0,0 L32.4,35.82 L32.39,15.02Z'/%3E%3Cpath d='M51.17,56.03 L32.8,56.07 L64.88,20.57 L64.86,40.72Z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-fill: #2B3990;      /* Marins Design plava: C100 M95 Y5 K0 / R43 G57 B144 */
+    --on-brand: #FFFFFF;
+    --bg: #FFFFFF;
+    --text: #1B2350;
+    --muted: #5A6283;
+    --brand: #2B3990;
+    --rule: #DADDEB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #0E1230;
+      --text: #E6E8F4;
+      --muted: #A3A9C9;
+      --brand: #9AA5EC;
+      --rule: #272D57;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Language switching */
+  html[data-lang="hr"] [lang="en"] { display: none; }
+  html[data-lang="en"] [lang="hr"] { display: none; }
+
+  /* Hero: brand blue, like the back of the business card */
+  .hero {
+    background: var(--brand-fill);
+    color: var(--on-brand);
+    padding: 1.75rem 0 2.5rem;
+  }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+
+  .lockup { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: inherit; }
+  .lockup svg { width: 52px; height: auto; flex-shrink: 0; }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  .wordmark .name { font-weight: 300; font-size: 1.15rem; letter-spacing: 0.24em; }
+  .wordmark .sub { font-weight: 700; font-size: 0.72rem; letter-spacing: 0.2em; padding-left: 0.1em; }
+
+  .lang { display: flex; gap: 0.25rem; }
+  .lang button {
+    font: inherit;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    background: none;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: rgba(255,255,255,0.75);
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { border-color: #FFFFFF; color: #FFFFFF; }
+
+  .hero h1 {
+    margin-top: 4.5rem;
+    font-weight: 300;
+    font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+    line-height: 1.05;
+    max-width: 15ch;
+    letter-spacing: -0.005em;
+  }
+  .hero p {
+    margin-top: 1.5rem;
+    max-width: 50ch;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.82);
+  }
+  .cta {
+    display: inline-block;
+    margin-top: 2rem;
+    background: #FFFFFF;
+    color: #2B3990;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .cta:hover { background: #E3E6F7; }
+
+  /* Lines drawing in white on blue */
+  .drawing { margin-top: 3.5rem; overflow-x: auto; }
+  .drawing svg { display: block; width: 100%; min-width: 640px; height: auto; }
+  .drawing .grid { stroke: rgba(255,255,255,0.18); stroke-width: 1; }
+  .drawing .wl { stroke: rgba(255,255,255,0.55); stroke-width: 1; stroke-dasharray: 4 4; }
+  .drawing .st { stroke: rgba(255,255,255,0.45); stroke-width: 1; }
+  .drawing .hull { fill: none; stroke: #FFFFFF; stroke-width: 2.2; stroke-linejoin: round; }
+  .drawing .dwl { stroke: #FFFFFF; stroke-width: 1.6; }
+  .drawing text { fill: rgba(255,255,255,0.7); font-family: inherit; font-size: 12px; }
+
+  /* Sections */
+  section { padding: 5rem 0; }
+  section + section { border-top: 1px solid var(--rule); }
+  section h2 {
+    font-weight: 300;
+    font-size: clamp(1.9rem, 4vw, 2.7rem);
+    line-height: 1.1;
+    color: var(--brand);
+    margin-bottom: 2.25rem;
+  }
+
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.25rem 3.5rem; }
+  .services h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .services p { color: var(--muted); max-width: 46ch; }
+
+  .about p { max-width: 62ch; margin-bottom: 1rem; }
+
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .contact-grid dt { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
+  .contact-grid dd { font-size: 1.15rem; }
+  .contact-grid a { color: var(--brand); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+  footer { background: var(--brand-fill); color: rgba(255,255,255,0.8); padding: 2rem 0; font-size: 0.9rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+
+  @media (max-width: 760px) {
+    .services, .contact-grid { grid-template-columns: 1fr; }
+    section { padding: 3.75rem 0; }
+    .hero h1 { margin-top: 3rem; }
+    .wordmark .name { font-size: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="lockup" href="#" aria-label="Marins Design Naval Architects">
+        <svg viewBox="0 0 72.7 56.07" aria-hidden="true">
+          <g fill="currentColor">
+            <path d="M14.04,27.91 L0.2,40.97 L0.01,11 L12.98,26.5Z"/>
+            <path d="M53.71,0 L72.7,0 L40.29,35.82 L40.3,15.02Z"/>
+            <path d="M18.99,0 L0,0 L32.4,35.82 L32.39,15.02Z"/>
+            <path d="M51.17,56.03 L32.8,56.07 L64.88,20.57 L64.86,40.72Z"/>
+          </g>
+        </svg>
+        <span class="wordmark">
+          <span class="name">MARINS DESIGN</span>
+          <span class="sub">NAVAL ARCHITECTS</span>
+        </span>
+      </a>
+      <div class="lang" role="group" aria-label="Jezik / Language">
+        <button type="button" data-set-lang="hr" aria-pressed="true">HR</button>
+        <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+
+    <h1>
+      <span lang="hr">Projektiranje brodova, brodica i jahti</span>
+      <span lang="en">Naval architecture for ships, boats and yachts</span>
+    </h1>
+    <p>
+      <span lang="hr">Projektni ured iz Hrvatske. Od prve ideje i linija trupa do tehničke dokumentacije za gradnju i odobrenje registra.</span>
+      <span lang="en">A design office based in Croatia. From the first idea and hull lines to construction drawings and class approval documentation.</span>
+    </p>
+    <a class="cta" href="#kontakt">
+      <span lang="hr">Pošaljite upit</span>
+      <span lang="en">Send an enquiry</span>
+    </a>
+
+    <figure class="drawing" aria-hidden="true">
+      <svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="hullClip">
+            <path d="M80,70 C350,88 700,82 920,42 C905,120 860,175 780,196 L210,201 C150,198 112,172 96,140 Z"/>
+          </clipPath>
+        </defs>
+        <g class="grid">
+          <line x1="80"  y1="20" x2="80"  y2="215"/>
+          <line x1="164" y1="20" x2="164" y2="215"/>
+          <line x1="248" y1="20" x2="248" y2="215"/>
+          <line x1="332" y1="20" x2="332" y2="215"/>
+          <line x1="416" y1="20" x2="416" y2="215"/>
+          <line x1="500" y1="20" x2="500" y2="215"/>
+          <line x1="584" y1="20" x2="584" y2="215"/>
+          <line x1="668" y1="20" x2="668" y2="215"/>
+          <line x1="752" y1="20" x2="752" y2="215"/>
+          <line x1="836" y1="20" x2="836" y2="215"/>
+          <line x1="920" y1="20" x2="920" y2="215"/>
+          <line x1="40" y1="215" x2="960" y2="215"/>
+        </g>
+        <g clip-path="url(#hullClip)">
+          <line class="wl" x1="40" y1="135" x2="960" y2="135"/>
+          <line class="wl" x1="40" y1="160" x2="960" y2="160"/>
+          <line class="wl" x1="40" y1="185" x2="960" y2="185"/>
+          <line class="st" x1="164" y1="20" x2="164" y2="215"/>
+          <line class="st" x1="248" y1="20" x2="248" y2="215"/>
+          <line class="st" x1="332" y1="20" x2="332" y2="215"/>
+          <line class="st" x1="416" y1="20" x2="416" y2="215"/>
+          <line class="st" x1="500" y1="20" x2="500" y2="215"/>
+          <line class="st" x1="584" y1="20" x2="584" y2="215"/>
+          <line class="st" x1="668" y1="20" x2="668" y2="215"/>
+          <line class="st" x1="752" y1="20" x2="752" y2="215"/>
+          <line class="st" x1="836" y1="20" x2="836" y2="215"/>
+        </g>
+        <line class="dwl" x1="40" y1="110" x2="960" y2="110"/>
+        <text x="965" y="114">DWL</text>
+        <path class="hull" d="M80,70 C350,88 700,82 920,42 C905,120 860,175 780,196 L210,201 C150,198 112,172 96,140 Z"/>
+        <g text-anchor="middle">
+          <text x="80"  y="235">0</text>
+          <text x="164" y="235">1</text>
+          <text x="248" y="235">2</text>
+          <text x="332" y="235">3</text>
+          <text x="416" y="235">4</text>
+          <text x="500" y="235">5</text>
+          <text x="584" y="235">6</text>
+          <text x="668" y="235">7</text>
+          <text x="752" y="235">8</text>
+          <text x="836" y="235">9</text>
+          <text x="920" y="235">10</text>
+        </g>
+      </svg>
+    </figure>
+  </div>
+</header>
+
+<main>
+  <section id="usluge">
+    <div class="wrap">
+      <h2><span lang="hr">Usluge</span><span lang="en">Services</span></h2>
+      <div class="services">
+        <div>
+          <h3><span lang="hr">Idejni projekt</span><span lang="en">Concept design</span></h3>
+          <p><span lang="hr">Koncept, opći plan i linije trupa prema vašim zahtjevima.</span><span lang="en">Concept, general arrangement and hull lines to your requirements.</span></p>
+        </div>
+        <div>
+          <h3><span lang="hr">Hidrostatika i stabilitet</span><span lang="en">Hydrostatics and stability</span></h3>
+          <p><span lang="hr">Proračuni stabiliteta te knjige trima i stabiliteta.</span><span lang="en">Stability calculations and trim and stability booklets.</span></p>
+        </div>
+        <div>
+          <h3><span lang="hr">Konstrukcija trupa</span><span lang="en">Hull structure</span></h3>
+          <p><span lang="hr">Dimenzioniranje i nacrti konstrukcije za čelik, aluminij i kompozite.</span><span lang="en">Scantlings and structural drawings for steel, aluminium and composites.</span></p>
+        </div>
+        <div>
+          <h3><span lang="hr">Dokumentacija za odobrenje</span><span lang="en">Approval documentation</span></h3>
+          <p><span lang="hr">Nacrti i proračuni za Hrvatski registar brodova i druge klasifikacijske ustanove.</span><span lang="en">Drawings and calculations for the Croatian Register of Shipping and other classification societies.</span></p>
+        </div>
+        <div>
+          <h3><span lang="hr">Preinake i obnove</span><span lang="en">Conversions and refits</span></h3>
+          <p><span lang="hr">Projekti preinaka postojećih plovila, od rasporeda do produljenja trupa.</span><span lang="en">Conversion projects for existing vessels, from new layouts to hull extensions.</span></p>
+        </div>
+        <div>
+          <h3><span lang="hr">Nadzor gradnje</span><span lang="en">Construction supervision</span></h3>
+          <p><span lang="hr">Praćenje gradnje u brodogradilištu i usklađenosti s projektom.</span><span lang="en">On-site supervision at the shipyard to keep the build in line with the design.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="o-nama" class="about">
+    <div class="wrap">
+      <h2><span lang="hr">O nama</span><span lang="en">About</span></h2>
+      <p>
+        <span lang="hr">Marins Design je projektni ured specijaliziran za projektiranje brodova, brodica i jahti, koji djeluje u sklopu tvrtke Naval Architect d.o.o. Ured vodi Marin Srdelić, dipl. ing.</span>
+        <span lang="en">Marins Design is a design office specialising in ships, boats and yachts, operating as part of Naval Architect d.o.o. The office is led by Marin Srdelić, Dipl. Ing.</span>
+      </p>
+      <p>
+        <span lang="hr">[Ovdje dodajte nekoliko rečenica o iskustvu, vrstama plovila koje ste projektirali i brodogradilištima s kojima surađujete.]</span>
+        <span lang="en">[Add a few sentences about your experience, the types of vessels you have designed and the shipyards you work with.]</span>
+      </p>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <h2><span lang="hr">Kontakt</span><span lang="en">Contact</span></h2>
+      <dl class="contact-grid">
+        <div>
+          <dt><span lang="hr">E-mail</span><span lang="en">Email</span></dt>
+          <dd><a href="mailto:marin@nav-arch.eu">marin@nav-arch.eu</a></dd>
+        </div>
+        <div>
+          <dt><span lang="hr">Mobitel</span><span lang="en">Mobile</span></dt>
+          <dd><a href="tel:+385959020201">+385 95 902 0201</a></dd>
+        </div>
+        <div>
+          <dt><span lang="hr">Adresa</span><span lang="en">Address</span></dt>
+          <dd>[Ulica i broj], [Grad], <span lang="hr">Hrvatska</span><span lang="en">Croatia</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Naval Architect d.o.o.</span>
+    <span>OIB: [00000000000]</span>
+    <span>© <span id="year">2026</span> Marins Design</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('[data-set-lang]');
+    function setLang(lang) {
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang);
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+      });
+      try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    if (saved === 'hr' || saved === 'en') setLang(saved);
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang')); });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
