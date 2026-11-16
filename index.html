@@ -18,6 +18,8 @@
     --muted: #5A6283;
     --brand: #2B3990;
     --rule: #DADDEB;
+    --accent: #F28C28;
+    --tint: #F3F4F8;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -27,6 +29,7 @@
       --muted: #A3A9C9;
       --brand: #9AA5EC;
       --rule: #272D57;
+      --tint: #131840;
     }
   }
 
@@ -57,17 +60,30 @@
     padding: 1.75rem 0 6rem;
   }
   .hero .wrap { position: relative; z-index: 1; }
+  .hero::before {
+    content: "";
+    position: absolute;
+    right: -10%;
+    top: -20%;
+    width: 75%;
+    height: 140%;
+    background: radial-gradient(closest-side, rgba(122, 140, 255, 0.38), rgba(122, 140, 255, 0));
+    pointer-events: none;
+  }
   .hero-mark {
     position: absolute;
-    right: -6%;
-    bottom: -14%;
-    width: min(62%, 860px);
+    right: -9%;
+    bottom: -12%;
+    width: min(52%, 760px);
     height: auto;
-    fill: #FFFFFF;
-    stroke: rgba(255,255,255,0.4);
-    stroke-width: 0.12;
-    stroke-linejoin: round;
     pointer-events: none;
+    filter: drop-shadow(0 18px 40px rgba(8, 12, 50, 0.45));
+  }
+  .hm-shapes path { stroke: rgba(255,255,255,0.65); stroke-width: 0.14; stroke-linejoin: round; }
+  .hm-sheen { animation: hmSheen 7s ease-in-out 1.2s infinite; }
+  @keyframes hmSheen {
+    0% { transform: skewX(-28deg) translateX(0); }
+    40%, 100% { transform: skewX(-28deg) translateX(150px); }
   }
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 
@@ -88,16 +104,29 @@
     padding: 0.25rem 0.6rem;
     cursor: pointer;
   }
-  .lang button[aria-pressed="true"] { border-color: #FFFFFF; color: #FFFFFF; }
+  .lang button[aria-pressed="true"] { border-color: #FFFFFF; color: #FFFFFF; box-shadow: inset 0 -2px 0 var(--accent); }
 
   .hero h1 {
     margin-top: 4.5rem;
     font-weight: 300;
-    font-size: clamp(2.4rem, 6.5vw, 4.6rem);
-    line-height: 1.05;
-    max-width: 15ch;
-    letter-spacing: -0.005em;
+    font-size: clamp(1.6rem, 3.3vw, 2.5rem);
+    line-height: 1.25;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
   }
+  .hero h1 { width: calc(109vw - min(52vw, 760px) - max(1.5rem, (100vw - 1100px) / 2 + 1.5rem) - 2.5rem); max-width: 100%; }
+  .hero h1 .l { display: block; }
+  .hero h1 .l:nth-child(2) { text-align: center; }
+  .hero h1 .l:nth-child(3) { text-align: right; }
+  .hero h1 i { display: inline-block; width: 0.15em; height: 0.15em; border-radius: 50%; background: var(--accent); margin-left: 0.35em; vertical-align: 0.16em; }
+  .hero .hero-types {
+    margin-top: 1.4rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    color: #FFFFFF;
+  }
+  .hero-types i { display: inline-block; width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--accent); margin: 0 0.9em 0 0.68em; vertical-align: 0.18em; }
   .hero p {
     margin-top: 1.5rem;
     max-width: 50ch;
@@ -114,6 +143,7 @@
     font-weight: 700;
     letter-spacing: 0.04em;
   }
+  .cta { box-shadow: inset 0 -3px 0 var(--accent); }
   .cta:hover { background: #E3E6F7; }
 
 
@@ -127,9 +157,19 @@
     color: var(--brand);
     margin-bottom: 2.25rem;
   }
+  section h2::before {
+    content: "";
+    display: block;
+    width: 2.75rem;
+    height: 3px;
+    background: var(--accent);
+    margin-bottom: 1.1rem;
+  }
+  #projekti { background: var(--tint); }
 
   .services { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.25rem 3.5rem; }
   .services h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.35rem; }
+  .services h3::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; background: var(--accent); margin-right: 0.6rem; vertical-align: 0.12em; }
   .services p { color: var(--muted); max-width: 46ch; }
 
   .about p { max-width: 62ch; margin-bottom: 1rem; }
@@ -137,9 +177,9 @@
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
   .contact-grid dt { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.25rem; }
   .contact-grid dd { font-size: 1.15rem; }
-  .contact-grid a { color: var(--brand); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .contact-grid a { color: var(--brand); text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 
-  footer { background: var(--brand-fill); color: rgba(255,255,255,0.8); padding: 2rem 0; font-size: 0.9rem; }
+  footer { border-top: 3px solid var(--accent); background: var(--brand-fill); color: rgba(255,255,255,0.8); padding: 2rem 0; font-size: 0.9rem; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
 
   .lead { max-width: 62ch; color: var(--muted); margin: -1rem 0 2rem; }
@@ -152,6 +192,7 @@
   .lightbox.open { display: flex; }
   .lightbox img { max-width: calc(100vw - 8rem); max-height: calc(100vh - 6rem); width: auto; height: auto; background: #FFFFFF; }
   .lightbox button { position: absolute; background: none; border: 0; color: #FFFFFF; font: inherit; font-size: 2.2rem; line-height: 1; cursor: pointer; padding: 0.75rem 1rem; }
+  .lightbox button:hover { color: var(--accent); }
   .lightbox .lb-close { top: 0.5rem; right: 0.75rem; }
   .lightbox .lb-prev { left: 0.5rem; top: 50%; transform: translateY(-50%); }
   .lightbox .lb-next { right: 0.5rem; top: 50%; transform: translateY(-50%); }
@@ -163,21 +204,47 @@
     .lightbox .lb-prev, .lightbox .lb-next { top: auto; bottom: 0.2rem; transform: none; }
     section { padding: 3.75rem 0; }
     .hero { padding-bottom: 4rem; }
-    .hero h1 { margin-top: 3rem; }
-    .hero-mark { width: 115%; right: -35%; bottom: -6%; opacity: 0.55; }
+    .hero h1 { margin-top: 3rem; width: auto; }
+    .hero-mark { width: 120%; right: -62%; bottom: -5%; opacity: 0.5; }
     .wordmark .name { font-size: 1rem; }
   }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hm-sheen { animation: none; display: none; } }
 </style>
 </head>
 <body>
 
 <header class="hero">
   <svg class="hero-mark" viewBox="0 0 72.7 56.07" aria-hidden="true">
-    <path style="fill-opacity:0.07" d="M14.04,27.91 L0.2,40.97 L0.01,11 L12.98,26.5Z"/>
-    <path style="fill-opacity:0.16" d="M53.71,0 L72.7,0 L40.29,35.82 L40.3,15.02Z"/>
-    <path style="fill-opacity:0.11" d="M18.99,0 L0,0 L32.4,35.82 L32.39,15.02Z"/>
-    <path style="fill-opacity:0.2" d="M51.17,56.03 L32.8,56.07 L64.88,20.57 L64.86,40.72Z"/>
+    <defs>
+      <linearGradient id="hmWhite" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.42"/>
+        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.1"/>
+      </linearGradient>
+      <linearGradient id="hmGrey" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#D5D9E6" stop-opacity="0.75"/>
+        <stop offset="1" stop-color="#8E96B4" stop-opacity="0.45"/>
+      </linearGradient>
+      <linearGradient id="hmSheen" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
+        <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0.55"/>
+        <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+      </linearGradient>
+      <clipPath id="hmClip">
+        <path d="M14.04,27.91 L0.2,40.97 L0.01,11 L12.98,26.5Z"/>
+        <path d="M53.71,0 L72.7,0 L40.29,35.82 L40.3,15.02Z"/>
+        <path d="M18.99,0 L0,0 L32.4,35.82 L32.39,15.02Z"/>
+        <path d="M51.17,56.03 L32.8,56.07 L64.88,20.57 L64.86,40.72Z"/>
+      </clipPath>
+    </defs>
+    <g class="hm-shapes">
+      <path fill="url(#hmGrey)" d="M14.04,27.91 L0.2,40.97 L0.01,11 L12.98,26.5Z"/>
+      <path fill="url(#hmWhite)" d="M53.71,0 L72.7,0 L40.29,35.82 L40.3,15.02Z"/>
+      <path fill="url(#hmWhite)" d="M18.99,0 L0,0 L32.4,35.82 L32.39,15.02Z"/>
+      <path fill="url(#hmWhite)" d="M51.17,56.03 L32.8,56.07 L64.88,20.57 L64.86,40.72Z"/>
+    </g>
+    <g clip-path="url(#hmClip)">
+      <rect class="hm-sheen" x="-30" y="-10" width="22" height="80" fill="url(#hmSheen)" transform="skewX(-28)"/>
+    </g>
   </svg>
   <div class="wrap">
     <div class="topbar">
@@ -202,9 +269,13 @@
     </div>
 
     <h1>
-      <span lang="hr">Projektiranje brodova, brodica i jahti</span>
-      <span lang="en">Naval architecture for ships, boats and yachts</span>
+      <span lang="hr"><span class="l">Jahte<i></i></span><span class="l">Brodice<i></i></span><span class="l">Brodovi</span></span>
+      <span lang="en"><span class="l">Yachts<i></i></span><span class="l">Boats<i></i></span><span class="l">Ships</span></span>
     </h1>
+    <p class="hero-types">
+      <span lang="hr">projekt<i></i>proračun<i></i>izvedba</span>
+      <span lang="en">design<i></i>calculation<i></i>build</span>
+    </p>
     <p>
       <span lang="hr">Projektni ured iz Hrvatske specijaliziran za čelične i aluminijske konstrukcije trupa i opremu brodova, brodica i jahti.</span>
       <span lang="en">A Croatian design office specialising in steel and aluminium hull structures and outfitting for ships, boats and yachts.</span>
